@@ -1,10 +1,12 @@
 ![title](https://miro.medium.com/max/644/1*TLyMXNil-OxKMLq8WZt96w.png)
 ## Reconocimiento
+
 Primero se identificaron los puertos abiertos con NMAP
 
 ![skynet](https://miro.medium.com/max/707/1*qKFE46r9__4Nq6H8u_pfzA.png)
 
 Una vez identificados los puertos, se identificaron las versiones de los servicios activos en cada uno de los puertos
+
 ![skynet](https://miro.medium.com/max/770/1*K8ux8rXkN2_6AeF_EwFHcg.png)
 
 Ejecutando dirb, se identificaron los siguientes directorios
@@ -20,3 +22,105 @@ Ejecutando dirb, se identificaron los siguientes directorios
 	/.hta 
 	/.htpasswd 
 	/server-status
+
+##SAMBA
+
+Se procedió a enumerar los recursos y usuarios con nmap y smb-enum-*
+
+	Host script results:
+	| smb-enum-domains: 
+	|   SKYNET
+	|     Groups: n/a
+	|     Users: milesdyson
+	|     Creation time: unknown
+	|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+	|     Account lockout disabled
+	|   Builtin
+	|     Groups: n/a
+	|     Users: n/a
+	|     Creation time: unknown
+	|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+	|_    Account lockout disabled
+	| smb-enum-sessions: 
+	|_  <nobody>
+	| smb-enum-shares: 
+	|   account_used: guest
+	|   \\10.10.51.155\IPC$: 
+	|     Type: STYPE_IPC_HIDDEN
+	|     Comment: IPC Service (skynet server (Samba, Ubuntu))
+	|     Users: 3
+	|     Max Users: <unlimited>
+	|     Path: C:\tmp
+	|     Anonymous access: READ/WRITE
+	|     Current user access: READ/WRITE
+	|   \\10.10.51.155\anonymous: 
+	|     Type: STYPE_DISKTREE
+	|     Comment: Skynet Anonymous Share
+	|     Users: 0
+	|     Max Users: <unlimited>
+	|     Path: C:\srv\samba
+	|     Anonymous access: READ/WRITE
+	|     Current user access: READ/WRITE
+	|   \\10.10.51.155\milesdyson: 
+	|     Type: STYPE_DISKTREE
+	|     Comment: Miles Dyson Personal Share
+	|     Users: 0
+	|     Max Users: <unlimited>
+	|     Path: C:\home\milesdyson\share
+	|     Anonymous access: <none>
+	|     Current user access: <none>
+	|   \\10.10.51.155\print$: 
+	|     Type: STYPE_DISKTREE
+	|     Comment: Printer Drivers
+	|     Users: 0
+	|     Max Users: <unlimited>
+	|     Path: C:\var\lib\samba\printers
+	|     Anonymous access: <none>
+	|_    Current user access: <none>
+	| smb-enum-users: 
+	|   SKYNET\milesdyson (RID: 1000)
+	|     Full name:   
+	|     Description: 
+	|_    Flags:       Normal user account
+
+##Acceso Inicial
+
+El directorio Anonymous permitía conexiones anónimas a través del smbclient se accedió al directorio y se procedió a listar los recursos
+
+![skynet](https://miro.medium.com/max/1400/1*RFQUWGUNvd35jbpwH-NcKw.png)
+
+Dentro de la sesión de smbclient smb: \> get attention.txt para descargar el archivo de forma local.
+
+![skynet](https://miro.medium.com/max/1400/1*-oRJpu0A-yxc_M4NFhUHVw.png)
+
+En el directorio logs, se encontró 3 archivos log1.txt,log2.txt y log3.txt, el primer archivo contenía una serie de contraseñas.
+
+![skynet](https://miro.medium.com/max/1400/1*cJGxB2fD9zw0IpT_bEluZg.png)
+
+Utilizando el usuario y la lista de contraseñas, se obtuvo acceso a squirrelmail
+
+![skynet](https://miro.medium.com/max/1400/1*iX8AVHAZUJeG5AEYJYFbMA.png)
+
+Revisando los correos se obtuvo una nueva contraseña
+
+![skynet](https://miro.medium.com/max/1400/1*649ewisn54donnIt_sMHmA.png)
+
+con smbclient y la nueva contraseña se accedió al dicterio de milesdyson
+
+![skynet](https://miro.medium.com/max/1400/1*pDn9GtQ59jLF8nVu4q1fFQ.png)
+
+Solo existía un directorio /notes
+
+![skynet](https://miro.medium.com/max/1400/1*LCsiL0ZUw_Gg9aoTHt2AUw.png)
+
+Se descargó el archivo important.txt
+
+![skynet](https://miro.medium.com/max/1400/1*Xg80CiaUrzeNotaJodnFTg.png)
+
+Accediendo al archivo important.txt , se identificó un nuevo directorio
+
+![skynet](https://miro.medium.com/max/1076/1*z9BDjcTsInTjvyjyz4euug.png)
+
+
+
+
