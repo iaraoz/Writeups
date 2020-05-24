@@ -144,4 +144,30 @@ Mediante una reverse-shell.php se obtuvo acceso inicial
 Mediante la herramienta linPEAS se procedió a enumerar recursos, servicios, SUID, tareas programadas para determinar el método de escalada de privilegio.
 
 La herramienta utilizada fue:
+
 https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
+
+Se identificó una tarea que se ejecuta con el usuario root, esta tarea se ejecutaba a través del script backup.sh
+
+(https://miro.medium.com/max/685/1*v_9Wk8CaBXcAoxQR7kO5uQ.png)
+
+Al acceder al directorio de milesdyson y listar el archivo backup.sh se observo el uso de comodín con el binario TAR ;)
+
+(https://miro.medium.com/max/750/1*7imqUTBY3Qkw-I8E42wh6Q.png)
+
+La técnica utilizada para la escalada fue Exploiting Wildcard y SUID la primera para otorgar S a un binario en especifico a Find. Exploiting wildcard afecta a algunos binarios en particular : chown, tar, rsync al utilizar nombres específicos permite la ejecución de código arbitrario.
+
+El detalle de la técnica se encuentra en :
+
+https://www.helpnetsecurity.com/2014/06/27/exploiting-wildcards-on-linux/
+
+Es importante que la tecnica sea aplicada en el directorio al cual hace referencia el script backup.sh
+
+#### Método utilizado:
+1. Se Creó el archivo test.sh que ejecuta el comando “chmod u+s” al binario find para activar el SUID
+2. Se creó el archivo “ — checkpoint-action=exec=sh test.sh” (ejecuta una accion, tambien se puede reemplazar “sh test.sh” por /bin/sh para obtener una shell)
+3. Se creó el archivo “ — checkpoint=1”
+	
+Detalle de todos los parámetros de TAR
+
+
