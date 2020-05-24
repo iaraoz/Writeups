@@ -9,6 +9,8 @@ Una vez identificados los puertos, se identificaron las versiones de los servici
 
 ![skynet](https://miro.medium.com/max/770/1*K8ux8rXkN2_6AeF_EwFHcg.png)
 
+## HTTP
+
 Ejecutando dirb, se identificaron los siguientes directorios
 
 	/index.html 
@@ -23,7 +25,7 @@ Ejecutando dirb, se identificaron los siguientes directorios
 	/.htpasswd 
 	/server-status
 
-##SAMBA
+## SAMBA
 
 Se procedió a enumerar los recursos y usuarios con nmap y smb-enum-*
 
@@ -83,7 +85,7 @@ Se procedió a enumerar los recursos y usuarios con nmap y smb-enum-*
 	|     Description: 
 	|_    Flags:       Normal user account
 
-##Acceso Inicial
+## Acceso Inicial
 
 El directorio Anonymous permitía conexiones anónimas a través del smbclient se accedió al directorio y se procedió a listar los recursos
 
@@ -120,6 +122,27 @@ Se descargó el archivo important.txt
 Accediendo al archivo important.txt , se identificó un nuevo directorio
 
 ![skynet](https://miro.medium.com/max/1076/1*z9BDjcTsInTjvyjyz4euug.png)
+
+
+![skynet](https://miro.medium.com/max/770/1*UvCNBcrnz7Z_s1USmlg4KQ.png)
+
+Mediante dirb se identificó el directorio /administrator
+
+![skynet](https://miro.medium.com/max/770/1*2qPr1P8DGxQe7krFRdjvrQ.png)
+
+En exploit-db se identificó una vulnerabilidad para acceder a información sin estar autenticado.
+
+[!skynet](https://miro.medium.com/max/727/1*Wbf6lvvfRuAJIU_Nv2ZYrw.png)
+
+Mediante una reverse-shell.php se obtuvo acceso inicial
+
+![skynet](https://miro.medium.com/max/770/1*1Cnc6gEydAJx3YSJGMlGCw.png)
+
+![skynet](https://miro.medium.com/max/770/1*vLuXpjz5IV3QYaQ2AtRMDg.png)
+
+## Escalada de privilegio
+
+Mediante la herramienta linPEAS se procedió a enumerar recursos, servicios, SUID, tareas programadas para determinar el método de escalada de privilegio.
 
 
 
