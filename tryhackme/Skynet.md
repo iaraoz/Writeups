@@ -143,6 +143,5 @@ Mediante una reverse-shell.php se obtuvo acceso inicial
 
 Mediante la herramienta linPEAS se procedió a enumerar recursos, servicios, SUID, tareas programadas para determinar el método de escalada de privilegio.
 
-
-
-
+La herramienta utilizada fue:
+https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
