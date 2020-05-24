@@ -98,19 +98,19 @@ Dentro de la sesión de smbclient smb: \> get attention.txt para descargar el ar
 
 ![skynet](https://miro.medium.com/max/1400/1*-oRJpu0A-yxc_M4NFhUHVw.png)
 
-En el directorio logs, se encontró 3 archivos log1.txt,log2.txt y log3.txt, el primer archivo contenía una serie de contraseñas.
+En el directorio logs, se encontró 3 archivos log1.txt,log2.txt y log3.txt, el primer archivo contenía información necesaria para realizar pruebas.
 
 ![skynet](https://miro.medium.com/max/1400/1*cJGxB2fD9zw0IpT_bEluZg.png)
 
-Utilizando el usuario y la lista de contraseñas, se obtuvo acceso a squirrelmail
+Utilizando el usuario y el listado, se obtuvo acceso a squirrelmail
 
 ![skynet](https://miro.medium.com/max/1400/1*iX8AVHAZUJeG5AEYJYFbMA.png)
 
-Revisando los correos se obtuvo una nueva contraseña
+Revisando los correos se obtuvo información para iniciar sesión
 
 ![skynet](https://miro.medium.com/max/1400/1*649ewisn54donnIt_sMHmA.png)
 
-con smbclient y la nueva contraseña se accedió al dicterio de milesdyson
+con smbclient se accedió al dicterio de milesdyson
 
 ![skynet](https://miro.medium.com/max/1400/1*pDn9GtQ59jLF8nVu4q1fFQ.png)
 
