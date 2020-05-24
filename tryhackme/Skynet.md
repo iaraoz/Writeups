@@ -131,6 +131,7 @@ Mediante dirb se identificó el directorio /administrator
 ![skynet](https://miro.medium.com/max/770/1*2qPr1P8DGxQe7krFRdjvrQ.png)
 
 En exploit-db se identificó una vulnerabilidad para acceder a información sin estar autenticado.
+
 ![skynet](https://miro.medium.com/max/727/1*Wbf6lvvfRuAJIU_Nv2ZYrw.png)
 
 Mediante una reverse-shell.php se obtuvo acceso inicial
@@ -167,7 +168,24 @@ Es importante que la tecnica sea aplicada en el directorio al cual hace referenc
 1. Se Creó el archivo test.sh que ejecuta el comando “chmod u+s” al binario find para activar el SUID
 2. Se creó el archivo “ — checkpoint-action=exec=sh test.sh” (ejecuta una accion, tambien se puede reemplazar “sh test.sh” por /bin/sh para obtener una shell)
 3. Se creó el archivo “ — checkpoint=1”
+
+![skynet](https://miro.medium.com/max/770/1*IuJAynErZWvbDme5XTg44w.png)
 	
-Detalle de todos los parámetros de TAR
+Detalle de todos los parámetros de TAR:
+
+http://man.he.net/?topic=tar&section=all
+
+Se puede observar los archivos creados
+
+![skynet](https://miro.medium.com/max/770/1*CN4IVjbp0ukp9Dn_eyv7mA.png)
+
+Se debe esperar que se ejecute la tarea programada
+
+![skynet](https://miro.medium.com/max/603/1*q9fPTH8UTYJWIegJlX-LcQ.png)
+
+Verificamos si el binario find cuenta con el Suid activo y con este binario se escalo privilegios
+
+![skynet](https://miro.medium.com/max/354/1*DxsHN0iSMxJ1HTr1HHHgVA.png)
+
 
 
