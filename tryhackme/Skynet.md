@@ -131,8 +131,7 @@ Mediante dirb se identificó el directorio /administrator
 ![skynet](https://miro.medium.com/max/770/1*2qPr1P8DGxQe7krFRdjvrQ.png)
 
 En exploit-db se identificó una vulnerabilidad para acceder a información sin estar autenticado.
-
-[!skynet](https://miro.medium.com/max/727/1*Wbf6lvvfRuAJIU_Nv2ZYrw.png)
+(https://miro.medium.com/max/727/1*Wbf6lvvfRuAJIU_Nv2ZYrw.png)
 
 Mediante una reverse-shell.php se obtuvo acceso inicial
 
