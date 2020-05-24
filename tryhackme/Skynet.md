@@ -1,4 +1,7 @@
 ![title](https://miro.medium.com/max/644/1*TLyMXNil-OxKMLq8WZt96w.png)
+
+Puedes encontrar el room en  : https://tryhackme.com/room/skynet
+
 ## Reconocimiento
 
 Primero se identificaron los puertos abiertos con NMAP
